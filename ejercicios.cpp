@@ -11,7 +11,7 @@ int PowerDigitSum(int, int);
 int AmicableNumbers(int);
 void triangulo_pascal(int, int**);
 void imprimir_matriz(int**,int);
-
+void teorema_binomio(int**,int);
 int main(int argc, char*argv[]){
 	int opcion = menu();
 
@@ -73,9 +73,50 @@ int main(int argc, char*argv[]){
 
 		delete[] matriz;
 
+	}else if(opcion == 5){
+		int potencia;
+                cout<< "Ingrese la potencia del binomio: ";
+                cin>> potencia;
+		potencia++;
+                int** matriz = new int*[potencia];
+                for(int i=0; i<potencia; i++){
+                        matriz[i]= new int[potencia];
+                }
+                for(int i=0; i<potencia;i++){
+                        for(int j=0; j<potencia;j++){
+                                matriz[i][j]=0;
+                        }
+                }
+
+                triangulo_pascal(potencia,matriz);
+		teorema_binomio(matriz,potencia);
+		
+		for (int i = 0; i < potencia; i++){
+                        delete[] matriz[i];
+                }
+
+                delete[] matriz;
+
 	}
 
 	return 0;
+}
+void teorema_binomio(int** matriz,int potencia){
+int potencia_x=potencia-2,potencia_y=1;
+
+	for(int i=0; i<potencia; i++){
+		if(i==0)
+			cout<< "X^"<<potencia-1<<" + ";
+		else if(matriz[potencia-1][i]==1)
+			cout<< "Y^"<<potencia_y<<endl;
+		else {
+			cout<<"("<<matriz[potencia-1][i]<<"X^"<<potencia_x<<")"<<"("<<"Y^"<<potencia_y<<")"<< " + ";
+			potencia_x--;
+			potencia_y++;
+		}
+	}
+
+
 }
 void imprimir_matriz(int** matriz,int filas){
 	for(int i=0; i<filas; i++){
