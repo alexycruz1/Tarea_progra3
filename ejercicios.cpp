@@ -7,12 +7,14 @@ using std::endl;
 using std::string;
 
 int menu();
-double PowerDigitSum(double, double);
+int PowerDigitSum(int, int);
 
 int main(int argc, char*argv[]){
+	int opcion = menu();
 
-	if (menu() == 1){
-		double base, expo;
+
+	if (opcion == 1){
+		int base, expo;
 		cout << endl;
 
 		cout << "Ingrese una base: ";
@@ -22,11 +24,14 @@ int main(int argc, char*argv[]){
 		cin >> expo;
 		cout << endl;
 
-		PowerDigitSum(base, expo);
+		int resultado = PowerDigitSum(base, expo);
 
-	}else if (menu() == 2){
+		cout << "El resultado del exponencial es: " << pow(base, expo) << endl;
+		cout << "La suma de los digitos es: " << resultado << endl;
+
+	}else if (opcion == 2){
 		cout << "prueba2";
-	}else if (menu() == 3){
+	}else if (opcion == 3){
 		cout << "prueba3";
 	}
 
@@ -45,11 +50,21 @@ int menu(){
 	return opcion;
 }
 
-double PowerDigitSum(double base, double expo){//no esta terminado
-	double exponencial = pow(base, expo);
-
-	cout << resultado;
-
+int PowerDigitSum(int base, int expo){//no esta terminado
+	int exponencial = pow(base, expo);
+	int aumentar = 1;
+	int resultado = 0;
+	int temp = 0;
+	 
+	for (int i = 0; i < aumentar; i++){
+		if (exponencial/10 != 0){
+			aumentar++;
+			resultado += exponencial%10; 
+			exponencial = exponencial/10;
+		}else if (exponencial/10 == 0){
+			resultado += exponencial;
+		}
+	}
 	return resultado;
 }
 
