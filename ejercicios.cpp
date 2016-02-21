@@ -48,7 +48,7 @@ int main(int argc, char*argv[]){
 		}
 
 	}else if (opcion == 3){
-		cout << "prueba3";
+		cout << "AQUI VA EL EJERCICIO 357";
 	}
 
 	return 0;
