@@ -9,6 +9,8 @@ using std::string;
 int menu();
 int PowerDigitSum(int, int);
 int AmicableNumbers(int);
+void triangulo_pascal(int, int**);
+void imprimir_matriz(int**,int);
 
 int main(int argc, char*argv[]){
 	int opcion = menu();
@@ -49,18 +51,77 @@ int main(int argc, char*argv[]){
 
 	}else if (opcion == 3){
 		cout << "AQUI VA EL EJERCICIO 357";
+	}else if(opcion == 4){
+		int filas;
+		cout<< "Ingrese la cantidad de lineas del triangulo: ";
+		cin>> filas;
+		int** matriz = new int*[filas];
+		for(int i=0; i<filas; i++){
+			matriz[i]= new int[filas];
+		}
+		for(int i=0; i<filas;i++){
+			for(int j=0; j<filas;j++){
+				matriz[i][j]=0;
+			}
+		}
+		
+		triangulo_pascal(filas,matriz);
+		imprimir_matriz(matriz,filas);	
+		for (int i = 0; i < filas; i++){
+			delete[] matriz[i];
+		}
+
+		delete[] matriz;
+
 	}
 
 	return 0;
 }
+void imprimir_matriz(int** matriz,int filas){
+	for(int i=0; i<filas; i++){
+		for(int j=filas-1; j>=0; j--){
+			if(matriz[i][j])
+				cout<<matriz[i][j]<<" ";
+			else
+				cout<< " ";
+		}
+		cout<< endl;
+	}
 
+
+}
+void triangulo_pascal(int filas, int** matriz){	
+	matriz[0][0]=1;
+	matriz[1][0]=1;
+	matriz[1][1]=1;
+	int cont;
+	for(int i=2; i<filas; i++){
+		cont =0;
+		for(int j=0; j<filas;j++){
+			if(j==0){
+				matriz[i][j]=1;	
+			}else{
+				if(cont < i){
+					matriz[i][j]= matriz[i-1][j-1]+ matriz[i-1][j];
+					cont++;
+				}	
+			}
+			
+		}
+	}
+
+
+}
 int menu(){
 	int opcion;
 
-	cout << "Programa #1 (16)" << endl
-		<< "Porgrama #2 (21)" << endl
-		<< "Programa #3 (357)" << endl
+	cout << "1-Programa #1 (16)" << endl
+		<< "2-Porgrama #2 (21)" << endl
+		<< "3-Programa #3 (357)" << endl
+		<< "4-Triangulo de Pascal"<<endl
+		<< "5-Binomio elevado a la n"<<endl
 		<< "Ingrese una opcion: ";
+		
 	cin >> opcion; 
 
 	return opcion;
