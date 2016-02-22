@@ -12,6 +12,7 @@ int AmicableNumbers(int);
 void triangulo_pascal(int, int**);
 void imprimir_matriz(int**,int);
 void teorema_binomio(int**,int);
+void Primegeneratingintegers(int);
 int main(int argc, char*argv[]){
 	int opcion = menu();
 
@@ -50,7 +51,14 @@ int main(int argc, char*argv[]){
 		}
 
 	}else if (opcion == 3){
-		cout << "AQUI VA EL EJERCICIO 357";
+		int num;
+		cout << "Ingresa el numero a evaluar: ";
+		cin >> num;
+		cout << endl;
+
+		cout << "Los primeros generados por los divisores de " << num << " son: " << endl; 
+		Primegeneratingintegers(num);
+
 	}else if(opcion == 4){
 		int filas;
 		cout<< "Ingrese la cantidad de lineas del triangulo: ";
@@ -200,4 +208,11 @@ int AmicableNumbers(int limit){
 	return DivisorsSum;
 }
 
-
+void Primegeneratingintegers(int num){
+	for (int i = 1; i < num; ++i){
+		if (num % i == 0){
+			cout << (i + (num/i)) << "     ";
+		}
+	}
+	cout << endl;
+}
